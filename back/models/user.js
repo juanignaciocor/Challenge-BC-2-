@@ -1,10 +1,11 @@
 const S = require('sequelize')
 const db = require("../db/index.js")
+const Op = S.Op;
 
 class User extends S.Model { }
 
 User.init({
-    fullName: {
+    full_name: {
         type: S.STRING,
         allowNull: false,
         unique:true
@@ -15,18 +16,9 @@ User.init({
 
     }
    
-  
+   
 
 }, { sequelize: db, modelName: 'user' })
 
-User.search = async function (name) {
-    return User.findAll({
-        where: {
-            nombre: {
-                [S.Op.like]: `%${name}%`,
-            }
-        }
-    })
-}
 
 module.exports= User

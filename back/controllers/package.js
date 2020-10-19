@@ -1,15 +1,9 @@
 const e = require("express")
-const {Package}= require("../models/index")
+const {Package,User}= require("../models/index")
 const controller= {}
  controller.fetchPackageUser= async(req,res,next)=>{
     try{
-     const allPackageUser= await Package.findAll({
-         where:{
-             userId:Number(req.query.userId),
-             state:"reception"
-
-         }
-     })
+     const allPackageUser= await Package.findAll({})
      res.status(200).json(allPackageUser)
     }
     catch(err){
@@ -19,6 +13,7 @@ const controller= {}
 
  controller.postPackageUser= async(req,res,next)=>{
     try{
+        console.log(req.body)
         const allPackageUser= await Package.findAll({
             where:{
                 userId:req.body.userId,
@@ -26,8 +21,16 @@ const controller= {}
             }
         })
     if(allPackageUser.length<3){
-        const newPackageUser= Package.create(req.body)
-        res.status(201).json(newPackageUser)
+        const package= await Package.create({
+            name:req.body.name,
+            category:req.body.category
+        })
+        const user= await User.findOne({where:{
+            id:req.body.userId
+        }})
+        user.addPackage(package.id)
+        package.setUser(req.body.userId)
+        res.status(201).json(package)
        }
     else{
 

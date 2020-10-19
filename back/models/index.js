@@ -2,7 +2,8 @@ const User= require("./user")
 const Package= require('./package')
 
 
-User.hasMany(Package)
+Package.belongsTo(User)
+User.belongsToMany(Package, { through: "user_package" })
 
 
 module.exports={
