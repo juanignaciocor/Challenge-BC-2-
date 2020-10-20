@@ -34,7 +34,11 @@ controller.fetchUser= async(req,res,next)=>{
 }
 controller.postUser= async(req,res,next)=>{
     try{
-     const createUser= await User.create(req.body)
+        let user={
+            full_name: req.body.full_name.toLowerCase(),
+            flight:req.body.flight.toLowerCase()
+        }
+     const createUser= await User.create(user)
      res.status(201).json(createUser)
     }
     catch(err){

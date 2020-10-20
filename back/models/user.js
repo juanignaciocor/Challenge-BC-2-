@@ -12,7 +12,8 @@ User.init({
 
     },
     flight:{
-        type:S.INTEGER,
+        type:S.STRING,
+        require:true
 
     }
    

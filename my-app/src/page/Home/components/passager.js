@@ -13,7 +13,6 @@ import { Form, Input, Select } from 'antd';
 export default ({passager,sendPackage,removePackage,postUser})=>{
   const[ visible,setVisible]=useState(false)
   const [ userId, setUserId]= useState(null)
-  const [disable, setDisable]= useState(true)
   const [ user,setUser]= useState({
     full_name:"",
     flight:""
@@ -28,8 +27,6 @@ export default ({passager,sendPackage,removePackage,postUser})=>{
   };
 
 const onChange =  (e)=>{
-  if(user.full_name && user.flight ) setDisable(false)
-  else setDisable(true)
   setUser({...user,[e.target.name]:e.target.value}) 
 }
 
@@ -98,16 +95,13 @@ console.log(user)
         <Input
         name="flight"
         onChange={(e)=>onChange(e)}
-        type="number"
-        min={1}
-        max={100}
         value={user.flight}
 
         />
       </Form.Item>
       <Form.Item {...tailLayout}>
         <Button
-        disabled={disable} 
+        disabled={user.flight && user.full_name ? false:true} 
         type="primary" 
         htmlType="submit" 
         onClick={()=>postUser(user)} >

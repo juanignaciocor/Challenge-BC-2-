@@ -2,6 +2,7 @@ import React,{useState} from "react"
 import 'antd/dist/antd.css'
 import { Table,Button,Modal } from 'antd';
 import { Form, Input, Select } from 'antd';
+
 const { Option } = Select;
 
 const layout = {
@@ -13,19 +14,17 @@ const layout = {
   };
 
 export default(({visible,setVisible,userId,sendPackage})=>{
-    const[ loading,setLoading]=useState(false)
     const[valueCategory, setValueCategory]= useState({
         name:"",
         category:"",
     })
 
-
+    
    const handleChange=(e,value)=> setValueCategory({...valueCategory,[e.target ? e.target.name :e.name]: e.target ? e.target.value :e.value})
    
     const handleCancel = () => setVisible(false)
 
     
-console.log(valueCategory)
     return(
         <>
              <Modal
@@ -62,9 +61,9 @@ console.log(valueCategory)
             onChange={(value,e)=>handleChange(e)}
             allowClear
           >
-            <Option name="category" value="grande" key="1">grande</Option>
-            <Option name="category" value="mediano" key="2">mediano</Option>
-            <Option name="category" value="chico" key="3">chico</Option>
+            <Option name="category" value="big" key="1">big</Option>
+            <Option name="category" value="medium" key="2">medium</Option>
+            <Option name="category" value="small" key="3">small</Option>
           </Select>
       </Form.Item>
       <Form.Item {...tailLayout}>

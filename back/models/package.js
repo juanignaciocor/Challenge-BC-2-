@@ -10,7 +10,7 @@ Package.init({
     },
     category:{
         type:S.ENUM({
-            values:['grande','mediano','chico']
+            values:['big','medium','small']
         })
     },
     state:{

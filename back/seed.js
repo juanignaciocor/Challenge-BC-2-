@@ -4,35 +4,35 @@ const personas = [
     {
         full_name: "juan ignacio",
         packages:[{
-        type:"grande",
+        type:"big",
         name:"bolso"},
-        {type:"chico",
+        {type:"small",
         name:"cartera"},
-        {type:"mediano",
+        {type:"small",
         name:"buzo"}],
-        flight:1
+        flight:"asloipdk234"
 },
 {
     full_name: "rober villa",
     packages:[{
-    type:"grande",
+    type:"big",
     name:"bolso"},
-    {type:"chico",
+    {type:"small",
     name:"tanga"},
-    {type:"mediano",
+    {type:"medium",
     name:"mochila"}],
-    flight:1
+    flight:"asloipdk234"
 },
 {
     full_name: "santino diliscia",
     packages:[{
-    type:"grande",
+    type:"big",
     name:"mochila viajera"},
-    {type:"chico",
+    {type:"small",
     name:"buzo"},
-    {type:"mediano",
+    {type:"medium",
     name:"caja"}],
-    flight:1
+    flight:"asloipdk234"
 }]
 
 
