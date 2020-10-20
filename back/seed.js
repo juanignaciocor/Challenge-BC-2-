@@ -1,67 +1,90 @@
-const {Package, User}= require('./models/index')
+const { Package, User } = require("./models/index");
 
 const personas = [
-    {
-        full_name: "juan ignacio",
-        packages:[{
-        type:"big",
-        name:"bolso"},
-        {type:"small",
-        name:"cartera"},
-        {type:"small",
-        name:"buzo"}],
-        flight:"asloipdk234"
-},
-{
+  {
+    full_name: "juan ignacio",
+    packages: [
+      {
+        type: "big",
+        name: "bolso",
+      },
+      { type: "small", name: "cartera" },
+      { type: "small", name: "buzo" },
+    ],
+    flight: "asloipdk234",
+  },
+  {
     full_name: "rober villa",
-    packages:[{
-    type:"big",
-    name:"bolso"},
-    {type:"small",
-    name:"tanga"},
-    {type:"medium",
-    name:"mochila"}],
-    flight:"asloipdk234"
-},
-{
+    packages: [
+      {
+        type: "big",
+        name: "bolso",
+      },
+      { type: "small", name: "bolsito" },
+      { type: "medium", name: "mochila" },
+    ],
+    flight: "asloipdk234",
+  },
+  {
+    full_name: "facundo velasco",
+    packages: [
+      {
+        type: "big",
+        name: "mochila viajera",
+      },
+      { type: "small", name: "mate" },
+      { type: "medium", name: "caja" },
+    ],
+    flight: "asloipdk234",
+  },
+  {
+    full_name: "nacho villasucio",
+    packages: [
+      {
+        type: "big",
+        name: "cajas",
+      },
+      { type: "small", name: "mouse" },
+      { type: "medium", name: "caja" },
+    ],
+    flight: "asloipdk234",
+  },
+  {
     full_name: "santino diliscia",
-    packages:[{
-    type:"big",
-    name:"mochila viajera"},
-    {type:"small",
-    name:"buzo"},
-    {type:"medium",
-    name:"caja"}],
-    flight:"asloipdk234"
-}]
+    packages: [
+      {
+        type: "big",
+        name: "mochila viajera",
+      },
+      { type: "small", name: "buzo" },
+      { type: "medium", name: "caja" },
+    ],
+    flight: "asloipdk234",
+  },
+];
 
-
-
-function addUserPackage ({full_name,flight,packages}){
-    Promise.all([
-        User.create({
-            full_name,
-            flight
+function addUserPackage({ full_name, flight, packages }) {
+  Promise.all([
+    User.create({
+      full_name,
+      flight,
+    }).then((data) => {
+      const userCreate = data;
+      packages.map((p) =>
+        Package.create({
+          category: p.type,
+          name: p.name,
+        }).then((package) => {
+          userCreate.addPackage(package);
+          package.setUser(userCreate.id);
         })
-        .then((data)=>{
-            const userCreate= data
-            packages.map(p=>(
-               
-                Package.create({
-                    category:p.type,
-                    name:p.name
-                }) 
-                .then((package)=>{
-                    userCreate.addPackage(package)
-                    package.setUser(userCreate.id)
-                })     
-        ))
-          
-        })
-    ])
+      );
+    }),
+  ]);
 }
 
-personas.map(e => {
-    addUserPackage(e)
-})
+personas.map((e) => {
+  addUserPackage(e);
+});
 
+console.log("Se sedeeo su app");

@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"nodemon server.js"
-
+    "start": "npm run seed & nodemon server.js",
+    "server": "nodemon server.js",
+    "seed": "node seed.js"
   },
   "author": "",
   "license": "ISC",
@@ -18,5 +19,6 @@
     "pg": "^8.4.1",
     "pg-hstore": "^2.3.3",
     "sequelize": "^6.3.5"
-  }
+  },
+  "devDependencies": {}
 }

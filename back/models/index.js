@@ -1,12 +1,10 @@
-const User= require("./user")
-const Package= require('./package')
+const User = require("./user");
+const Package = require("./package");
 
+Package.belongsTo(User);
+User.belongsToMany(Package, { through: "user_package" });
 
-Package.belongsTo(User)
-User.belongsToMany(Package, { through: "user_package" })
-
-
-module.exports={
-    User,
-    Package
-}
+module.exports = {
+  User,
+  Package,
+};
