@@ -1,10 +1,11 @@
 import React,{useState} from "react"
-import { Row, Col } from 'antd';
+import { Row, Col, Switch } from 'antd';
 import 'antd/dist/antd.css'
 import h from '../home.module.scss'
 import { Table,Button,Modal } from 'antd';
 import ModalPackage from "./modalAdd"
 import { Form, Input, Select } from 'antd';
+import {isAlphanumeric,isValidName} from "../../../utils/validaciones"
 
 
 
@@ -27,11 +28,21 @@ export default ({passager,sendPackage,removePackage,postUser})=>{
   };
 
 const onChange =  (e)=>{
-  setUser({...user,[e.target.name]:e.target.value}) 
+  if(e.target.value==="")setUser({...user,[e.target.name]:e.target.value}) 
+  switch (e.target.name) {
+    case "flight":
+        if(isAlphanumeric(e.target.value))
+        setUser({...user,[e.target.name]:e.target.value}) 
+
+    break
+  case "full_name":
+    if(isValidName(e.target.value))
+    setUser({...user,[e.target.name]:e.target.value})   
+  break;
+  }
 }
 
 
-console.log(user)
   const columns = [
     { title: 'id', dataIndex: 'id', key: 'id' },
     { title: 'FullName', dataIndex: 'full_name', key: 'full_name' },

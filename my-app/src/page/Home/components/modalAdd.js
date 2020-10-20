@@ -2,6 +2,7 @@ import React,{useState} from "react"
 import 'antd/dist/antd.css'
 import { Table,Button,Modal } from 'antd';
 import { Form, Input, Select } from 'antd';
+import {isValidName} from "../../../utils/validaciones"
 
 const { Option } = Select;
 
@@ -20,7 +21,7 @@ export default(({visible,setVisible,userId,sendPackage})=>{
     })
 
     
-   const handleChange=(e,value)=> setValueCategory({...valueCategory,[e.target ? e.target.name :e.name]: e.target ? e.target.value :e.value})
+   const handleChange=(e,value)=>setValueCategory({...valueCategory,[e.target ? e.target.name :e.name]: e.target ? e.target.value :e.value})
    
     const handleCancel = () => setVisible(false)
 

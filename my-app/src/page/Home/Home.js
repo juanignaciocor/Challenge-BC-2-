@@ -26,8 +26,8 @@ const Home=()=> {
   const sendPackage = async (sendBody)=>{
     const send= await AgreedPackage(sendBody)
   const args={
-      message: 'El packete se agrego , muchas gracias!',
-      description:`Usted agrego ${sendBody.name}, que posee una categoria de clase ${sendBody.category}` ,
+      message: send.message ? send.message :'El packete se agrego , muchas gracias!',
+      description:!send.message && `Usted agrego ${sendBody.name}, que posee una categoria de clase ${sendBody.category}` ,
       duration: 3,
       
     }
